@@ -1,5 +1,5 @@
 /* ===========================
-   Cognitive Behavioral Institute
+   Cognitive Behavioral Technology Institute
    Main Stylesheet
    =========================== */
 
@@ -33,7 +33,7 @@ body {
     animation: bounceAndFade 4s ease-in-out 3s forwards;
 }
 
-.cbi-logo {
+.cbti-logo {
     font-size: 4rem;
     font-weight: 300;
     color: #ffffff;
@@ -279,7 +279,7 @@ body {
    Mobile Responsive
    =========================== */
 @media (max-width: 768px) {
-    .cbi-logo {
+    .cbti-logo {
         font-size: 2.5rem;
         letter-spacing: 0.2rem;
     }
