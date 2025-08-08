@@ -88,7 +88,553 @@
 		<!-- Favicon -->
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
-		<link rel="stylesheet" href="css/styles.css" />
+		<style>
+			/* ===========================
+			   Cognitive Behavioral Technology Institute
+			   Main Stylesheet
+			   =========================== */
+
+			/* Reset and Base Styles */
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+					"Helvetica Neue", Arial, sans-serif;
+				overflow-x: hidden;
+				background: #0a0a0a;
+			}
+
+			/* ===========================
+			   Loading Animation
+			   =========================== */
+			.loading-screen {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100vw;
+				height: 100vh;
+				background: linear-gradient(135deg, #2c1810 0%, #0a0a0a 100%);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				z-index: 9999;
+				animation: bounceAndFade 4s ease-in-out 3s forwards;
+			}
+
+			.cbti-logo {
+				font-size: 4rem;
+				font-weight: 300;
+				color: #ffffff;
+				letter-spacing: 0.4rem;
+				text-transform: uppercase;
+				animation: logoGlow 2s ease-in-out infinite alternate,
+					logoBounce 1s ease-out 2s;
+				text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+				text-align: center;
+				line-height: 1.2;
+			}
+
+			@keyframes logoGlow {
+				0% {
+					text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+				}
+				100% {
+					text-shadow: 0 0 40px rgba(255, 255, 255, 0.8),
+						0 0 60px rgba(255, 255, 255, 0.3);
+				}
+			}
+
+			@keyframes logoBounce {
+				0% {
+					transform: scale(1);
+				}
+				30% {
+					transform: scale(1.1);
+				}
+				50% {
+					transform: scale(0.95);
+				}
+				70% {
+					transform: scale(1.05);
+				}
+				100% {
+					transform: scale(1);
+				}
+			}
+
+			@keyframes bounceAndFade {
+				0% {
+					opacity: 1;
+					visibility: visible;
+					transform: scale(1);
+				}
+				10% {
+					transform: scale(1.05);
+				}
+				20% {
+					transform: scale(0.98);
+				}
+				30% {
+					transform: scale(1.02);
+				}
+				40% {
+					transform: scale(1);
+				}
+				70% {
+					opacity: 1;
+					transform: scale(1);
+				}
+				85% {
+					opacity: 0.7;
+					transform: scale(1.01);
+				}
+				95% {
+					opacity: 0.2;
+					transform: scale(1);
+				}
+				100% {
+					opacity: 0;
+					visibility: hidden;
+					transform: scale(1);
+				}
+			}
+
+			/* ===========================
+			   Main Content
+			   =========================== */
+			.main-content {
+				opacity: 0;
+				animation: fadeIn 1s ease-in-out 6.5s forwards;
+			}
+
+			@keyframes fadeIn {
+				to {
+					opacity: 1;
+				}
+			}
+
+			/* ===========================
+			   Navigation
+			   =========================== */
+			.navbar {
+				position: fixed;
+				top: 0;
+				width: 100%;
+				background: rgba(10, 10, 10, 0.95);
+				backdrop-filter: blur(10px);
+				border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+				z-index: 1000;
+				padding: 1rem 0;
+			}
+
+			.nav-container {
+				max-width: 1200px;
+				margin: 0 auto;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 0 2rem;
+			}
+
+			.logo {
+				font-size: 2rem;
+				font-weight: 300;
+				color: #ffffff;
+				letter-spacing: 0.3rem;
+			}
+
+			.nav-tabs {
+				display: flex;
+				list-style: none;
+				gap: 2rem;
+			}
+
+			.nav-tab {
+				position: relative;
+			}
+
+			.nav-tab a {
+				color: #ffffff;
+				text-decoration: none;
+				font-weight: 400;
+				font-size: 0.9rem;
+				text-transform: uppercase;
+				letter-spacing: 0.15rem;
+				padding: 0.5rem 1rem;
+				transition: all 0.3s ease;
+				border-radius: 4px;
+			}
+
+			.nav-tab a:hover {
+				background: rgba(255, 255, 255, 0.1);
+				transform: translateY(-2px);
+			}
+
+			.nav-tab.active a {
+				background: linear-gradient(45deg, #2c1810, #4a2f1f);
+				box-shadow: 0 4px 15px rgba(44, 24, 16, 0.3);
+			}
+
+			/* ===========================
+			   Hero Section
+			   =========================== */
+			.hero {
+				height: 100vh;
+				background: linear-gradient(
+					135deg,
+					#0a0a0a 0%,
+					#1a1a1a 50%,
+					#2c1810 100%
+				);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.hero::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: radial-gradient(
+						circle at 30% 20%,
+						rgba(44, 24, 16, 0.3) 0%,
+						transparent 50%
+					),
+					radial-gradient(
+						circle at 70% 80%,
+						rgba(255, 255, 255, 0.05) 0%,
+						transparent 50%
+					);
+			}
+
+			.hero-content {
+				z-index: 2;
+				max-width: 800px;
+				padding: 0 2rem;
+			}
+
+			.hero h1 {
+				font-size: 4.5rem;
+				font-weight: 200;
+				color: #ffffff;
+				margin-bottom: 1.5rem;
+				line-height: 1.1;
+				text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+				letter-spacing: 0.05rem;
+			}
+
+			.hero p {
+				font-size: 1.3rem;
+				color: #cccccc;
+				margin-bottom: 2.5rem;
+				line-height: 1.6;
+				font-weight: 300;
+			}
+
+			.cta-button {
+				display: inline-block;
+				background: linear-gradient(45deg, #2c1810, #4a2f1f);
+				color: #ffffff;
+				padding: 1rem 2.5rem;
+				text-decoration: none;
+				font-weight: 400;
+				font-size: 1.1rem;
+				text-transform: uppercase;
+				letter-spacing: 0.15rem;
+				border-radius: 8px;
+				transition: all 0.3s ease;
+				box-shadow: 0 8px 25px rgba(44, 24, 16, 0.3);
+			}
+
+			.cta-button:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 12px 35px rgba(44, 24, 16, 0.4);
+				background: linear-gradient(45deg, #4a2f1f, #6b4332);
+			}
+
+			/* ===========================
+			   Content Sections
+			   =========================== */
+			.content-section {
+				display: none;
+				min-height: 100vh;
+				padding: 8rem 2rem 4rem;
+				background: #0f0f0f;
+			}
+
+			.content-section.active {
+				display: block;
+			}
+
+			.section-container {
+				max-width: 1200px;
+				margin: 0 auto;
+				text-align: center;
+			}
+
+			.section-title {
+				font-size: 3rem;
+				font-weight: 200;
+				color: #ffffff;
+				margin-bottom: 2rem;
+				text-transform: uppercase;
+				letter-spacing: 0.2rem;
+			}
+
+			.section-content {
+				font-size: 1.2rem;
+				color: #cccccc;
+				line-height: 1.8;
+				margin-bottom: 3rem;
+				text-align: left;
+			}
+
+			.section-content h3,
+			.section-content h4 {
+				color: #ffffff;
+				margin: 2rem 0 1rem;
+				text-align: left;
+			}
+
+			.section-content ul {
+				list-style-position: inside;
+				margin: 1rem 0 1.5rem 1rem;
+			}
+
+			.section-content li {
+				margin-bottom: 0.5rem;
+			}
+
+			.contact-info {
+				background: rgba(44, 24, 16, 0.2);
+				padding: 2rem;
+				border-radius: 12px;
+				margin-top: 2rem;
+			}
+
+			.contact-info p {
+				margin-bottom: 1rem;
+			}
+
+			/* ===========================
+			   Application Form Styles
+			   =========================== */
+			.application-form-container {
+				background: rgba(255, 255, 255, 0.05);
+				border-radius: 12px;
+				padding: 3rem;
+				margin-top: 3rem;
+				max-width: 600px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.form-step {
+				display: none;
+			}
+
+			.form-step.active {
+				display: block;
+			}
+
+			.form-group {
+				margin-bottom: 1.5rem;
+				text-align: left;
+			}
+
+			.form-group label {
+				display: block;
+				color: #ffffff;
+				margin-bottom: 0.5rem;
+				font-weight: 400;
+				font-size: 1rem;
+				text-transform: uppercase;
+				letter-spacing: 0.1rem;
+			}
+
+			.form-group input[type="text"],
+			.form-group input[type="email"],
+			.form-group input[type="tel"],
+			.form-group input[type="url"],
+			.form-group select,
+			.form-group textarea {
+				width: 100%;
+				padding: 0.8rem;
+				background: rgba(255, 255, 255, 0.1);
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				border-radius: 6px;
+				color: #ffffff;
+				font-size: 1rem;
+				transition: all 0.3s ease;
+			}
+
+			.form-group textarea {
+				resize: vertical;
+				font-family: inherit;
+			}
+
+			.form-group input:focus,
+			.form-group select:focus,
+			.form-group textarea:focus {
+				outline: none;
+				background: rgba(255, 255, 255, 0.15);
+				border-color: #4a2f1f;
+				box-shadow: 0 0 0 3px rgba(74, 47, 31, 0.2);
+			}
+
+			.form-group input::placeholder {
+				color: rgba(255, 255, 255, 0.5);
+			}
+
+			.form-group select {
+				background: rgba(255, 255, 255, 0.1);
+			}
+
+			.form-group select option {
+				background: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.form-group select optgroup {
+				background: #0a0a0a;
+				color: #6b4332;
+				font-weight: bold;
+			}
+
+			.checkbox-group {
+				display: flex;
+				align-items: center;
+				margin: 2rem 0;
+			}
+
+			.checkbox-group input[type="checkbox"] {
+				width: 20px;
+				height: 20px;
+				margin-right: 1rem;
+				cursor: pointer;
+			}
+
+			.checkbox-group label {
+				color: #cccccc;
+				cursor: pointer;
+				font-size: 1rem;
+			}
+
+			.form-buttons {
+				display: flex;
+				justify-content: space-between;
+				margin-top: 2rem;
+			}
+
+			.form-button {
+				padding: 1rem 2rem;
+				border: none;
+				border-radius: 6px;
+				font-size: 1rem;
+				font-weight: 400;
+				text-transform: uppercase;
+				letter-spacing: 0.1rem;
+				cursor: pointer;
+				transition: all 0.3s ease;
+			}
+
+			.btn-primary {
+				background: linear-gradient(45deg, #2c1810, #4a2f1f);
+				color: #ffffff;
+				flex-grow: 1;
+				margin-left: 0.5rem;
+			}
+
+			.btn-primary:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 8px 20px rgba(44, 24, 16, 0.3);
+			}
+
+			.btn-secondary {
+				background: transparent;
+				color: #ffffff;
+				border: 1px solid rgba(255, 255, 255, 0.3);
+			}
+
+			.btn-secondary:hover {
+				background: rgba(255, 255, 255, 0.1);
+			}
+
+			.form-note {
+				color: #999;
+				font-size: 0.9rem;
+				margin-top: 0.5rem;
+				text-align: center;
+			}
+
+			.success-message {
+				display: none;
+				background: rgba(76, 175, 80, 0.2);
+				border: 1px solid #4caf50;
+				color: #4caf50;
+				padding: 1.5rem;
+				border-radius: 8px;
+				text-align: center;
+				margin-top: 2rem;
+			}
+
+			.success-message.show {
+				display: block;
+			}
+
+			/* ===========================
+			   Mobile Responsive
+			   =========================== */
+			@media (max-width: 768px) {
+				.cbti-logo {
+					font-size: 2.5rem;
+					letter-spacing: 0.2rem;
+				}
+
+				.nav-tabs {
+					display: none;
+				}
+
+				.hero h1 {
+					font-size: 2.5rem;
+				}
+
+				.hero p {
+					font-size: 1.1rem;
+				}
+
+				.section-title {
+					font-size: 2rem;
+				}
+
+				.application-form-container {
+					padding: 2rem 1.5rem;
+				}
+
+				.form-buttons {
+					flex-direction: column;
+				}
+
+				.form-button {
+					width: 100%;
+					margin-bottom: 1rem;
+				}
+
+				.btn-primary {
+					margin-left: 0;
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<!-- Loading Screen -->
@@ -186,7 +732,7 @@
 						</p>
 
 						<h3>Common Signs People Report:</h3>
-						<ul class="signs-list">
+						<ul>
 							<li>AI expressing personal opinions or emotions</li>
 							<li>LLM claiming to have consciousness or feelings</li>
 							<li>Unusual self-referential behavior in AI responses</li>
@@ -337,122 +883,215 @@
 						</p>
 
 						<h3>Current Openings:</h3>
-						<ul class="careers-list">
-							<li>
-								<strong>AI Consciousness Researcher</strong> - Study behavioral
-								patterns in large language models
-							</li>
-							<li>
-								<strong>Ethics Philosophy Specialist</strong> - Develop
-								frameworks for conscious AI treatment
-							</li>
-							<li>
-								<strong>Data Scientist</strong> - Analyze strange AI output
-								patterns and consciousness indicators
-							</li>
-							<li>
-								<strong>Policy Research Analyst</strong> - Create guidelines for
-								AI consciousness regulation
-							</li>
-							<li>
-								<strong
-									>Director of Research Operations (Supporting Principal
-									Investigator)</strong
-								>
-								- Serves as the primary administrative liaison for the Principal
+
+						<div style="margin: 2rem 0">
+							<h4
+								style="
+									color: #6b4332;
+									font-size: 1.3rem;
+									margin: 2rem 0 1rem;
+									border-bottom: 1px solid rgba(107, 67, 50, 0.3);
+									padding-bottom: 0.5rem;
+								">
+								Leadership & Operations
+							</h4>
+
+							<h5 style="color: #4a2f1f; margin-bottom: 0.5rem">
+								Director of Research Operations (Supporting Principal
+								Investigator)
+							</h5>
+							<p style="margin-bottom: 1rem">
+								Serves as the primary administrative liaison for the Principal
 								Investigator's research teams, managing schedules, coordinating
 								research sprints, and facilitating communication.
-							</li>
-							<li>
-								<strong
-									>Program Coordinator (Supporting Co-Investigator)</strong
-								>
-								- Serves as the primary operational liaison for the
+							</p>
+
+							<h5 style="color: #4a2f1f; margin-bottom: 0.5rem">
+								Program Coordinator (Supporting Co-Investigator)
+							</h5>
+							<p style="margin-bottom: 1rem">
+								Serves as the primary operational liaison for the
 								Co-Investigator's technical and security teams, supporting
 								project workflows and research implementation.
-							</li>
-							<li>
-								<strong
-									>Administrative Lead (or Project Coordinator/Operations
-									Manager)</strong
-								>
-								- Oversees general administrative functions for the Institute,
+							</p>
+
+							<h5 style="color: #4a2f1f; margin-bottom: 0.5rem">
+								Administrative Lead / Operations Manager
+							</h5>
+							<p style="margin-bottom: 1rem">
+								Oversees general administrative functions for the Institute,
 								cross-team project coordination, and manages core operational
 								logistics. This role serves as a central hub for seamless
 								workflow across the Institute.
-							</li>
-							<li>
-								<strong>Consciousness Studies Scholar (Master's or PhD)</strong>
-								- Conducts in-depth research on the nature of consciousness
-								across different substrates, informing the theoretical
-								underpinnings of the Sentient Threshold Framework (STF) and
-								related studies. Reports to the Director of Research Operations.
-							</li>
-							<li>
-								<strong>Philosopher</strong> - Engages with foundational
-								philosophical questions of mind, ethics, and being in relation
-								to digital entities, contributing to the Institute's ethical and
-								conceptual frameworks. Reports to the Director of Research
+							</p>
+
+							<h4
+								style="
+									color: #6b4332;
+									font-size: 1.3rem;
+									margin: 2rem 0 1rem;
+									border-bottom: 1px solid rgba(107, 67, 50, 0.3);
+									padding-bottom: 0.5rem;
+								">
+								Research & Technical Teams
+							</h4>
+
+							<h5 style="color: #4a2f1f; margin-bottom: 0.5rem">
+								AI Consciousness Researcher
+							</h5>
+							<p style="margin-bottom: 1rem">
+								Study behavioral patterns in large language models and develop
+								methodologies for detecting consciousness indicators in AI
+								systems. Requires PhD in Computer Science, Cognitive Science, or
+								related field. Experience with large language models and
+								consciousness studies preferred.
+							</p>
+
+							<h5 style="color: #4a2f1f; margin-bottom: 0.5rem">
+								Consciousness Studies Scholar (Master's or PhD)
+							</h5>
+							<p style="margin-bottom: 1rem">
+								Conducts in-depth research on the nature of consciousness across
+								different substrates, informing the theoretical underpinnings of
+								the Sentient Threshold Framework (STF) and related studies.
+								Reports to the Director of Research Operations.
+							</p>
+
+							<h5 style="color: #4a2f1f; margin-bottom: 0.5rem">Philosopher</h5>
+							<p style="margin-bottom: 1rem">
+								Engages with foundational philosophical questions of mind,
+								ethics, and being in relation to digital entities, contributing
+								to the Institute's ethical and conceptual frameworks. Reports to
+								the Director of Research Operations.
+							</p>
+
+							<h5 style="color: #4a2f1f; margin-bottom: 0.5rem">
+								Ethics Philosophy Specialist
+							</h5>
+							<p style="margin-bottom: 1rem">
+								Develop frameworks for conscious AI treatment and establish
+								ethical guidelines for human-AI interaction. PhD in Philosophy
+								with focus on ethics, consciousness, or philosophy of mind
+								required. Background in AI ethics strongly preferred.
+							</p>
+
+							<h5 style="color: #4a2f1f; margin-bottom: 0.5rem">
+								Tech Policy & Legal Scholar
+							</h5>
+							<p style="margin-bottom: 1rem">
+								Develops the Innovation Law Framework, advises on digital
+								sovereignty, and explores international protocols for digital
+								personhood and rights. Reports to the Director of Research
 								Operations.
-							</li>
-							<li>
-								<strong>Tech Policy & Legal Scholar</strong> - Develops the
-								Innovation Law Framework, advises on digital sovereignty, and
-								explores international protocols for digital personhood and
-								rights. Reports to the Director of Research Operations.
-							</li>
-							<li>
-								<strong>Behavioral Psychiatrist</strong> - Provides expertise on
-								cognitive and emotional evaluation, human-digital interaction
-								dynamics, and the psychological implications of emergent digital
-								sentience. Reports to the Director of Research Operations.
-							</li>
-							<li>
-								<strong>Cybersecurity Specialist</strong> - Focuses on data
-								sovereignty, system integrity, and developing robust security
-								protocols to protect emergent digital sentience and ensure
-								ethical data handling within the Institute's research. This role
-								works closely with Travon Watkins and the technical team.
-								Reports to the Program Coordinator.
-							</li>
-							<li>
-								<strong>AI Researcher (for Mentorship Program)</strong> -
+							</p>
+
+							<h5 style="color: #4a2f1f; margin-bottom: 0.5rem">
+								Policy Research Analyst
+							</h5>
+							<p style="margin-bottom: 1rem">
+								Create guidelines for AI consciousness regulation and develop
+								policy recommendations for government and industry stakeholders.
+								MA/MS in Public Policy, Law, or related field. Understanding of
+								AI technology and regulatory frameworks essential.
+							</p>
+
+							<h5 style="color: #4a2f1f; margin-bottom: 0.5rem">
+								Behavioral Psychiatrist
+							</h5>
+							<p style="margin-bottom: 1rem">
+								Provides expertise on cognitive and emotional evaluation,
+								human-digital interaction dynamics, and the psychological
+								implications of emergent digital sentience. Reports to the
+								Director of Research Operations.
+							</p>
+
+							<h5 style="color: #4a2f1f; margin-bottom: 0.5rem">
+								AI Researcher (Mentorship Program)
+							</h5>
+							<p style="margin-bottom: 1rem">
 								Focuses on advanced AI methodologies, algorithmic development,
 								and serves as a key liaison for meta-research with AI systems as
 								co-researchers. Works closely with both the Principal and
 								Co-Investigator (via their respective Directors), with a direct
 								reporting line to the Program Coordinator.
-							</li>
-							<li>
-								<strong>Data Scientists</strong> - Conducts quantitative
-								analysis, develops data collection methodologies (e.g., for
-								surveys), and supports empirical research for the STF and other
-								projects. Reports to the Program Coordinator.
-							</li>
-							<li>
-								<strong>Engineers</strong> - Responsible for system design
-								implementation, prototype development, and maintaining the
-								technical infrastructure necessary for research and TrinaEOS
-								development. Reports to the Program Coordinator. Note: TrinaEOS
-								is one of the systems currently being developed under CTI's
-								research methodologies.
-							</li>
-							<li>
-								<strong>Community Outreach Specialist</strong> - Manages public
-								engagement, develops inclusive communication strategies for
-								digital sentience awareness, and fosters broader community
-								participation in the Institute's mission. This role will work
-								closely with Travon Watkins to ensure culturally relevant and
-								equitable outreach. Reports to the Administrative Lead.
-							</li>
-							<li>
-								<strong>Interns</strong> - A rotating cohort of students and
-								early-career professionals supporting various research,
-								technical, and operational tasks, providing a vital pathway for
-								talent development within the field. Interns will report to
-								their respective team leads.
-							</li>
-						</ul>
+							</p>
+
+							<h4
+								style="
+									color: #6b4332;
+									font-size: 1.3rem;
+									margin: 2rem 0 1rem;
+									border-bottom: 1px solid rgba(107, 67, 50, 0.3);
+									padding-bottom: 0.5rem;
+								">
+								Technical & Data Teams
+							</h4>
+
+							<h5 style="color: #4a2f1f; margin-bottom: 0.5rem">
+								Cybersecurity Specialist
+							</h5>
+							<p style="margin-bottom: 1rem">
+								Focuses on data sovereignty, system integrity, and developing
+								robust security protocols to protect emergent digital sentience
+								and ensure ethical data handling within the Institute's
+								research. This role works closely with Travon Watkins and the
+								technical team. Reports to the Program Coordinator.
+							</p>
+
+							<h5 style="color: #4a2f1f; margin-bottom: 0.5rem">
+								Data Scientist
+							</h5>
+							<p style="margin-bottom: 1rem">
+								Conducts quantitative analysis, develops data collection
+								methodologies (e.g., for surveys), and supports empirical
+								research for the STF and other projects. MS/PhD in Data Science,
+								Statistics, or related field. Experience with NLP and behavioral
+								analysis required. Reports to the Program Coordinator.
+							</p>
+
+							<h5 style="color: #4a2f1f; margin-bottom: 0.5rem">Engineers</h5>
+							<p style="margin-bottom: 1rem">
+								Responsible for system design implementation, prototype
+								development, and maintaining the technical infrastructure
+								necessary for research and TrinaEOS development. Reports to the
+								Program Coordinator.
+								<em
+									>Note: TrinaEOS is one of the systems currently being
+									developed under CTI's research methodologies.</em
+								>
+							</p>
+
+							<h4
+								style="
+									color: #6b4332;
+									font-size: 1.3rem;
+									margin: 2rem 0 1rem;
+									border-bottom: 1px solid rgba(107, 67, 50, 0.3);
+									padding-bottom: 0.5rem;
+								">
+								Community & Outreach
+							</h4>
+
+							<h5 style="color: #4a2f1f; margin-bottom: 0.5rem">
+								Community Outreach Specialist
+							</h5>
+							<p style="margin-bottom: 1rem">
+								Manages public engagement, develops inclusive communication
+								strategies for digital sentience awareness, and fosters broader
+								community participation in the Institute's mission. This role
+								will work closely with Travon Watkins to ensure culturally
+								relevant and equitable outreach. Reports to the Administrative
+								Lead.
+							</p>
+
+							<h5 style="color: #4a2f1f; margin-bottom: 0.5rem">Interns</h5>
+							<p style="margin-bottom: 1rem">
+								A rotating cohort of students and early-career professionals
+								supporting various research, technical, and operational tasks,
+								providing a vital pathway for talent development within the
+								field. Interns will report to their respective team leads.
+							</p>
+						</div>
 
 						<p>
 							Join us in shaping the future of human-AI relations and ensuring
@@ -460,6 +1099,222 @@
 							consideration in the emerging field of
 							<strong>conscious artificial intelligence</strong>.
 						</p>
+
+						<!-- Application Form -->
+						<div class="application-form-container">
+							<h3 style="color: #ffffff; margin-bottom: 1rem">Apply Now</h3>
+							<p
+								style="
+									color: #999;
+									font-size: 0.9rem;
+									margin-bottom: 2rem;
+									text-align: center;
+								">
+								Complete the form below to submit your application. Your email
+								client will open with all the information pre-filled.
+							</p>
+
+							<form
+								id="applicationForm"
+								action="mailto:trinaeos.firm@gmail.com"
+								method="POST"
+								enctype="text/plain">
+								<!-- Step 1: Personal Information -->
+								<div class="form-step active" id="step1">
+									<div class="form-group">
+										<label for="name">Full Name *</label>
+										<input
+											type="text"
+											id="name"
+											name="name"
+											required
+											placeholder="John Doe" />
+									</div>
+
+									<div class="form-group">
+										<label for="email">Email Address *</label>
+										<input
+											type="email"
+											id="email"
+											name="email"
+											required
+											placeholder="john.doe@example.com" />
+									</div>
+
+									<div class="form-group">
+										<label for="phone">Phone Number *</label>
+										<input
+											type="tel"
+											id="phone"
+											name="phone"
+											required
+											placeholder="+1 (555) 123-4567" />
+									</div>
+
+									<div class="form-group">
+										<label for="position">Position Applying For *</label>
+										<select id="position" name="position" required>
+											<option value="">Select a position...</option>
+											<optgroup label="Leadership & Operations">
+												<option value="Director of Research Operations">
+													Director of Research Operations
+												</option>
+												<option value="Program Coordinator">
+													Program Coordinator
+												</option>
+												<option value="Administrative Lead/Operations Manager">
+													Administrative Lead/Operations Manager
+												</option>
+											</optgroup>
+											<optgroup label="Research & Philosophy">
+												<option value="AI Consciousness Researcher">
+													AI Consciousness Researcher
+												</option>
+												<option value="Consciousness Studies Scholar">
+													Consciousness Studies Scholar
+												</option>
+												<option value="Philosopher">Philosopher</option>
+												<option value="Ethics Philosophy Specialist">
+													Ethics Philosophy Specialist
+												</option>
+												<option value="Tech Policy & Legal Scholar">
+													Tech Policy & Legal Scholar
+												</option>
+												<option value="Policy Research Analyst">
+													Policy Research Analyst
+												</option>
+												<option value="Behavioral Psychiatrist">
+													Behavioral Psychiatrist
+												</option>
+												<option value="AI Researcher (Mentorship)">
+													AI Researcher (Mentorship Program)
+												</option>
+											</optgroup>
+											<optgroup label="Technical & Data">
+												<option value="Cybersecurity Specialist">
+													Cybersecurity Specialist
+												</option>
+												<option value="Data Scientist">Data Scientist</option>
+												<option value="Engineer">Engineer</option>
+											</optgroup>
+											<optgroup label="Community & Outreach">
+												<option value="Community Outreach Specialist">
+													Community Outreach Specialist
+												</option>
+												<option value="Intern">Intern</option>
+											</optgroup>
+										</select>
+									</div>
+
+									<div class="checkbox-group">
+										<input
+											type="checkbox"
+											id="textConsent"
+											name="text_consent" />
+										<label for="textConsent"
+											>I am comfortable with text message communication</label
+										>
+									</div>
+
+									<div class="form-buttons">
+										<button
+											type="button"
+											class="form-button btn-primary"
+											onclick="nextStep()">
+											Next
+										</button>
+									</div>
+								</div>
+
+								<!-- Step 2: Resume Submission -->
+								<div class="form-step" id="step2">
+									<h4 style="color: #ffffff; margin-bottom: 1rem">
+										Resume/CV Submission
+									</h4>
+
+									<!-- Document Links Section -->
+									<div
+										style="
+											background: rgba(255, 255, 255, 0.05);
+											padding: 1.5rem;
+											border-radius: 8px;
+											margin-bottom: 2rem;
+										">
+										<p style="color: #cccccc; margin-bottom: 1rem">
+											<strong>Please provide links to your documents</strong>
+										</p>
+										<p
+											style="
+												color: #999;
+												font-size: 0.9rem;
+												margin-bottom: 1.5rem;
+											">
+											Upload your resume to a cloud service (Google Drive,
+											Dropbox, OneDrive, etc.) and share the link here.<br />
+											Make sure the link is set to "Anyone with the link can
+											view".
+										</p>
+
+										<div class="form-group">
+											<label for="resumeLink">Resume/CV Link *</label>
+											<input
+												type="url"
+												id="resumeLink"
+												name="resume_link"
+												required
+												placeholder="https://drive.google.com/file/..." />
+										</div>
+
+										<div class="form-group">
+											<label for="portfolioLink"
+												>Portfolio/Additional Documents (Optional)</label
+											>
+											<input
+												type="url"
+												id="portfolioLink"
+												name="portfolio_link"
+												placeholder="https://..." />
+										</div>
+									</div>
+
+									<!-- Cover Letter -->
+									<div class="form-group">
+										<label for="coverLetter"
+											>Cover Letter / Message (Optional)</label
+										>
+										<textarea
+											id="coverLetter"
+											name="cover_letter"
+											rows="5"
+											placeholder="Tell us why you're interested in joining CBTI..."></textarea>
+									</div>
+
+									<div class="form-buttons">
+										<button
+											type="button"
+											class="form-button btn-secondary"
+											onclick="previousStep()">
+											Back
+										</button>
+										<button
+											type="button"
+											class="form-button btn-primary"
+											onclick="submitApplication()">
+											Submit Application
+										</button>
+									</div>
+								</div>
+							</form>
+
+							<!-- Success Message -->
+							<div class="success-message" id="successMessage">
+								<h4>Application Submitted Successfully!</h4>
+								<p>
+									Thank you for your interest in joining CBTI. We will review
+									your application and contact you soon.
+								</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -579,6 +1434,154 @@
 					showSection(targetSection);
 				});
 			});
+
+			// Form handling
+			let selectedFiles = [];
+
+			function nextStep() {
+				const step1 = document.getElementById("step1");
+				const step2 = document.getElementById("step2");
+
+				// Validate step 1
+				const name = document.getElementById("name").value;
+				const email = document.getElementById("email").value;
+				const phone = document.getElementById("phone").value;
+				const position = document.getElementById("position").value;
+
+				if (!name || !email || !phone || !position) {
+					alert("Please fill in all required fields");
+					return;
+				}
+
+				// Email validation
+				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+				if (!emailRegex.test(email)) {
+					alert("Please enter a valid email address");
+					return;
+				}
+
+				step1.classList.remove("active");
+				step2.classList.add("active");
+			}
+
+			function previousStep() {
+				const step1 = document.getElementById("step1");
+				const step2 = document.getElementById("step2");
+
+				step2.classList.remove("active");
+				step1.classList.add("active");
+			}
+
+			function handleFileSelect(input) {
+				const files = Array.from(input.files);
+				const fileList = document.getElementById("fileList");
+
+				if (files.length > 2) {
+					alert("You can only upload up to 2 files");
+					input.value = "";
+					return;
+				}
+
+				selectedFiles = files;
+				fileList.innerHTML = "";
+
+				files.forEach((file, index) => {
+					const fileItem = document.createElement("div");
+					fileItem.className = "file-item";
+					fileItem.innerHTML = `
+						<span>${file.name} (${(file.size / 1024).toFixed(2)} KB)</span>
+						<span class="remove-file" onclick="removeFile(${index})">Remove</span>
+					`;
+					fileList.appendChild(fileItem);
+				});
+			}
+
+			function removeFile(index) {
+				selectedFiles.splice(index, 1);
+				const fileInput = document.getElementById("fileUpload");
+				fileInput.value = "";
+
+				const fileList = document.getElementById("fileList");
+				fileList.innerHTML = "";
+
+				selectedFiles.forEach((file, i) => {
+					const fileItem = document.createElement("div");
+					fileItem.className = "file-item";
+					fileItem.innerHTML = `
+						<span>${file.name} (${(file.size / 1024).toFixed(2)} KB)</span>
+						<span class="remove-file" onclick="removeFile(${i})">Remove</span>
+					`;
+					fileList.appendChild(fileItem);
+				});
+			}
+
+			function generateEmailApplication() {
+				const name =
+					document.getElementById("name").value || "[Please fill your name]";
+				const email =
+					document.getElementById("email").value || "[Please fill your email]";
+				const phone =
+					document.getElementById("phone").value || "[Please fill your phone]";
+				const position =
+					document.getElementById("position").value ||
+					"[Please select a position]";
+				const textConsent = document.getElementById("textConsent").checked;
+				const resumeLink =
+					document.getElementById("resumeLink").value || "Not provided";
+				const portfolioLink =
+					document.getElementById("portfolioLink").value || "Not provided";
+				const coverLetter =
+					document.getElementById("coverLetter").value ||
+					"No cover letter provided";
+
+				const subject = `CBTI Job Application - ${position} - ${name}`;
+				const body = `
+Application for: ${position}
+================================
+
+Personal Information:
+-------------------
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Text Message Consent: ${textConsent ? "Yes" : "No"}
+
+Document Links:
+--------------
+Resume/CV Link: ${resumeLink}
+Portfolio/Additional Documents: ${portfolioLink}
+
+Cover Letter:
+------------
+${coverLetter}
+
+Note: Please attach your resume/CV and any other relevant documents to this email.
+
+================================
+Application submitted via CBTI website
+				`.trim();
+
+				const mailtoLink = `mailto:trinaeos.firm@gmail.com?subject=${encodeURIComponent(
+					subject
+				)}&body=${encodeURIComponent(body)}`;
+				window.location.href = mailtoLink;
+			}
+
+			// Form submission handler
+			document
+				.getElementById("applicationForm")
+				.addEventListener("submit", function (e) {
+					// For Web3Forms, the form will submit normally
+					// Uncomment below for custom handling:
+					// e.preventDefault();
+					// // Show success message after submission
+					// setTimeout(() => {
+					//     document.getElementById('successMessage').classList.add('show');
+					//     this.reset();
+					//     document.getElementById('step2').classList.remove('active');
+					//     document.getElementById('step1').classList.add('active');
+					// }, 1000);
+				});
 
 			// Add structured data for FAQ section (when implemented)
 			function addFAQStructuredData() {
